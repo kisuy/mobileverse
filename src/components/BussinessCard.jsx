@@ -36,6 +36,10 @@ class BussinessCard extends Component {
                     <MobileverseTextStyled normal style={styles.normalText}>{profileData.instagram}</MobileverseTextStyled>
                     <MobileverseTextStyled normal style={styles.normalText}>{profileData.email }</MobileverseTextStyled>
                     <MobileverseTextStyled normal style={styles.normalText}>{profileData.instagram}</MobileverseTextStyled>
+                    <MobileverseTextStyled normal style={styles.normalText}>{profileData.instagram}</MobileverseTextStyled>
+                    <MobileverseTextStyled normal style={styles.normalText}>{profileData.email }</MobileverseTextStyled>
+                    <MobileverseTextStyled normal style={styles.normalText}>{profileData.instagram}</MobileverseTextStyled>
+                    <MobileverseTextStyled normal style={styles.normalText}>Final</MobileverseTextStyled>
                 </ScrollView>
             </SafeAreaView>
         )
@@ -79,7 +83,8 @@ const styles = StyleSheet.create({
     },
     mainRow: {
 
-        minHeight: '70%',
+        minHeight: '30%',
+        maxHeight: '50%',
         backgroundColor: 'lightgrey'
     },
 
