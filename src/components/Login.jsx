@@ -1,24 +1,41 @@
 import { useState } from 'react';
-import { Button, Image, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Image, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import MobileverseTextStyled from './MobileverseTextStyled';
 import theme from '../../theme.js'
 import Separator from './Separator';
 
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
 
-const [email, setEmail]=useState('a')
-const [password, setPassword]=useState('a')
-
+    const [email, setEmail] = useState('Chaim_McDermott@dana.io')
+    const [password, setPassword] = useState('Delphine')
 
     const signin = () => {
+        var BreakException = {}
         
-        if(!email){
+        if (!email) {
             alert('Missing email')
-
         }
 
+        fetch('https://jsonplaceholder.typicode.com/users').
+            then((response) => response.json())
+            .then((json) => {
+                json.forEach(function (data) {
+                   
+                    if (data.email === email && data.username === password) {
+                        navigation.navigate('Dashboard')
+                        throw BreakException
+                    }
+                })
+                alert('Something goes wrong')
+            }).catch((e) => {
+            }).finally(() => {
+            })
 
+    }
+
+    const goForgotPwd = () => {
+        navigation.navigate('BussinessCard')
     }
 
     return (
@@ -32,25 +49,28 @@ const [password, setPassword]=useState('a')
                     <MobileverseTextStyled normal>Email</MobileverseTextStyled>
                 </View>
                 <TextInput keyboardType='email-address' value={email}
-                 onChangeText={setEmail} style={styles.input}></TextInput>
+                    onChangeText={setEmail} style={styles.input}></TextInput>
             </View>
             <View style={styles.defaultRow}>
                 <View style={styles.defaultColumn}>
                     <MobileverseTextStyled normal>Password</MobileverseTextStyled>
                 </View>
-                <TextInput value={password} onChangeText={setPassword} secureTextEntry 
-                keyboardType='number-pad' style={styles.input}></TextInput>
+                <TextInput value={password} onChangeText={setPassword} secureTextEntry
+                    keyboardType='number-pad' style={styles.input}></TextInput>
             </View>
             <View style={styles.defaultRow}>
 
                 <View style={styles.defaultColumn}>
 
                 </View>
-                <MobileverseTextStyled tiny>Forgot Password</MobileverseTextStyled>
+                <TouchableOpacity style={styles.button} onPress={goForgotPwd}>
+                    <MobileverseTextStyled tiny>Forgot Password</MobileverseTextStyled>
+                </TouchableOpacity>
+
             </View>
             <Button title='Sign in' onPress={signin}></Button>
-            <Separator/>
-            <Button title='Register' onPress={() =>{navigation.navigate('Register')}}></Button>
+            <Separator />
+            <Button title='Register' onPress={() => { navigation.navigate('Register') }}></Button>
 
         </SafeAreaView>
     )
@@ -74,7 +94,12 @@ const styles = StyleSheet.create({
     defaultColumn: {
         flexDirection: 'column',
         width: '30%'
-    }
+    },
+    button: {
+        alignItems: 'center',
+        backgroundColor: '#DDDDDD',
+        padding: 10,
+    },
 })
 
 export default Login
