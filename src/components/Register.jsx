@@ -18,7 +18,7 @@ const Register = ({ navigation }) => {
 
         } else {
             navigation.goBack()
-            
+
         }
 
 
@@ -50,21 +50,16 @@ const Register = ({ navigation }) => {
                 </View>
                 <View style={styles.defaultRow}>
                     <View style={styles.defaultColumn}>
-                        <MobileverseTextStyled normal>Edad</MobileverseTextStyled>
+                        <MobileverseTextStyled normal>Age</MobileverseTextStyled>
                     </View>
 
                     <NumericInput value={age} valueType='integer' onChange={changeAge}></NumericInput>
 
                 </View>
 
-                <View style={styles.defaultRow}>
-                    <View style={styles.defaultColumn}>
-                    <Separator />
-                    </View>
-                    <Button title='Register' onPress={registerAction}></Button>
-                    
+                <Separator />
+                <Button title='Register' onPress={registerAction}></Button>
 
-                </View>
             </ScrollView>
 
             <MobileverseTextStyled normal>Register</MobileverseTextStyled>
